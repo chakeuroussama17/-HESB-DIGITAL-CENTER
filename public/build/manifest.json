@@ -1,0 +1,55 @@
+{
+  "_money-DdG6A59U.js": {
+    "file": "assets/money-DdG6A59U.js",
+    "name": "money"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-4oo8Xzw-.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/amp.js": {
+    "file": "assets/amp-CQkZyZFY.js",
+    "name": "amp",
+    "src": "resources/js/amp.js",
+    "isEntry": true,
+    "imports": [
+      "_money-DdG6A59U.js"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-BUMOnANl.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/compare.js": {
+    "file": "assets/compare-D_Ezww23.js",
+    "name": "compare",
+    "src": "resources/js/compare.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/dashboard.js",
+      "resources/js/dashboard.js"
+    ]
+  },
+  "resources/js/dashboard.js": {
+    "file": "assets/dashboard-DQRGl4C5.js",
+    "name": "dashboard",
+    "src": "resources/js/dashboard.js",
+    "isEntry": true
+  },
+  "resources/js/grid.js": {
+    "file": "assets/grid-CFrksFRk.js",
+    "name": "grid",
+    "src": "resources/js/grid.js",
+    "isEntry": true,
+    "imports": [
+      "_money-DdG6A59U.js"
+    ]
+  }
+}

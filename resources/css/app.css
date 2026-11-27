@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../js/**/*.js';
+
+/* Dark mode is class-based (html.dark), toggled from the navbar and remembered in localStorage. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens — Purity UI Dashboard (Chakra UI).
+ * Semantic colours point at CSS variables so the same utility (bg-card, text-ink …)
+ * works in light and dark mode.
+ */
+:root {
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --card-muted: #f7fafc;
+    --line: #e2e8f0;
+    --ink: #2d3748;
+    --ink-soft: #718096;
+    --ink-muted: #a0aec0;
+    --field: #ffffff;
+    --derived: #edf2f7;
+    --sh-card: 0 3.5px 5.5px rgba(0, 0, 0, 0.02);
+    --sh-pop: 0 7px 23px rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+    --bg: #141824;
+    --card: #1f2535;
+    --card-muted: #262d40;
+    --line: #2d3548;
+    --ink: #f7fafc;
+    --ink-soft: #cbd5e0;
+    --ink-muted: #8f9bb3;
+    --field: #171c2a;
+    --derived: #2a3245;
+    --sh-card: 0 3.5px 5.5px rgba(0, 0, 0, 0.25);
+    --sh-pop: 0 7px 23px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+}
+
+@theme inline {
+    --font-sans: 'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+
+    /* Surfaces & text */
+    --color-page: var(--bg);
+    --color-card: var(--card);
+    --color-card-muted: var(--card-muted);
+    --color-line: var(--line);
+    --color-ink: var(--ink);
+    --color-ink-soft: var(--ink-soft);
+    --color-ink-muted: var(--ink-muted);
+    --color-field: var(--field);
+    --color-derived: var(--derived);
+
+    /* Brand: Chakra teal, Purity primary is teal.300 */
+    --color-brand-50: #e6fffa;
+    --color-brand-100: #b2f5ea;
+    --color-brand-200: #81e6d9;
+    --color-brand-300: #4fd1c5;
+    --color-brand-400: #38b2ac;
+    --color-brand-500: #319795;
+    --color-brand-600: #2c7a7b;
+    --color-brand-700: #285e61;
+
+    /* Status */
+    --color-good: #48bb78;
+    --color-bad: #e53e3e;
+    --color-warn: #ed8936;
+    --color-info: #4299e1;
+
+    /* Navy used by Purity's dark gradient cards */
+    --color-navy-700: #313860;
+    --color-navy-900: #151928;
+
+    /* Radii & shadows */
+    --radius-card: 15px;
+    --radius-control: 12px;
+    --shadow-card: var(--sh-card);
+    --shadow-pop: var(--sh-pop);
+}
+
+@layer base {
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        @apply bg-page text-ink font-sans antialiased;
+    }
+
+    /* Numeric inputs/figures line up in columns */
+    .tabular {
+        font-variant-numeric: tabular-nums;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-brand-300);
+        outline-offset: 2px;
+    }
+}
+
+@utility card {
+    @apply bg-card rounded-card shadow-card p-[22px];
+}
+
+/* Purity's signature dark gradient (Active Users / banner cards) */
+@utility bg-banner {
+    background-image:
+        radial-gradient(120% 140% at 100% 0%, rgba(79, 209, 197, 0.35) 0%, rgba(79, 209, 197, 0) 55%),
+        linear-gradient(81.62deg, #313860 2.25%, #151928 79.87%);
+}
+
+@utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-control px-5 h-10 text-[11px] font-bold uppercase tracking-wide transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
+}
+
+@utility btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-control px-5 h-10 text-[11px] font-bold uppercase tracking-wide transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-brand-300 text-white hover:bg-brand-400;
+}
+
+@utility btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-control px-5 h-10 text-[11px] font-bold uppercase tracking-wide transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border border-line text-ink hover:bg-card-muted;
+}
+
+@utility btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-control px-5 h-10 text-[11px] font-bold uppercase tracking-wide transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed bg-bad text-white hover:opacity-90;
+}
+
+@utility field {
+    @apply w-full h-[50px] rounded-card border border-line bg-field px-5 text-sm text-ink placeholder:text-ink-muted outline-none transition focus:border-brand-300 focus:ring-2 focus:ring-brand-300/25;
+}
+
+@utility field-sm {
+    @apply w-full h-10 rounded-control border border-line bg-field px-3 text-sm text-ink outline-none focus:border-brand-300 focus:ring-2 focus:ring-brand-300/25;
+}
+
+@utility label {
+    @apply block text-sm font-bold text-ink mb-1.5;
+}
+
+@utility eyebrow {
+    @apply text-xs font-bold text-ink-muted;
+}
+
+@utility th {
+    @apply text-[10px] font-bold uppercase tracking-wider text-ink-muted py-3 px-3 text-left border-b border-line;
+}
+
+@utility td {
+    @apply text-sm py-3 px-3 border-b border-line;
+}
+
+@utility badge {
+    @apply inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold leading-none whitespace-nowrap;
+}
+
+@utility badge-good { @apply inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold leading-none whitespace-nowrap bg-good/15 text-good; }
+@utility badge-bad { @apply inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold leading-none whitespace-nowrap bg-bad/15 text-bad; }
+@utility badge-warn { @apply inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold leading-none whitespace-nowrap bg-warn/15 text-warn; }
+@utility badge-muted { @apply inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold leading-none whitespace-nowrap bg-card-muted text-ink-muted; }
+@utility badge-brand { @apply inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold leading-none whitespace-nowrap bg-brand-300/15 text-brand-400; }
+
+@utility icon-tile {
+    @apply grid place-items-center size-[30px] rounded-control shrink-0;
+}
